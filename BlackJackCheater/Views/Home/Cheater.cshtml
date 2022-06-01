@@ -1,0 +1,96 @@
+﻿@model CheaterUpdatesViewModel
+
+@{
+    ViewBag.Title = "Cheater";
+    string[] seeds = { "H", "D", "C", "S" };
+}
+
+<div class="container text-center">
+    <h1 class="h5 text-center m-3">Cheat room: @Model.RoomId</h1>
+    <form method="post" asp-controller="Home" asp-action="Helper">
+        <input type="hidden" asp-for="@Model.RoomId" />
+        <div class="table-responsive-md">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ace</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>J</th>
+                        <th>Q</th>
+                        <th>K</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var seed in seeds)
+                    {
+                        <tr>
+                            @{
+                                string buttonColor = "btn btn-danger";
+                                if (seed == "C" || seed == "S")
+                                {
+                                    buttonColor = "btn btn-dark";
+                                }
+                                string cName;
+                                cName = seed + "A";
+                                <td><button type="submit" class="@buttonColor" asp-route-cardName="@cName">@cName</button></td>
+
+                                for (var i = 2; i <= 10; i++)
+                                {
+                                    cName = seed + i;
+                                    <td><button type="submit" class="@buttonColor" asp-route-cardName="@cName">@cName</button></td>
+                                }
+
+                                cName = seed + "J";
+                                <td><button type="submit" class="@buttonColor" asp-route-cardName="@cName">@cName</button></td>
+                                cName = seed + "Q";
+                                <td><button type="submit" class="@buttonColor" asp-route-cardName="@cName">@cName</button></td>
+                                cName = seed + "K";
+                                <td><button type="submit" class="@buttonColor" asp-route-cardName="@cName">@cName</button></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="m-3">
+            <label asp-for="Hand">Your Hand</label>
+            <input asp-for="Hand" class="form-control text-center" readonly value="@Model.Hand"/>
+        </div>
+        <div class="mb-3">
+            @if (@Model.Message == "Hit")
+            {
+                <p class="h6 text-primary">@Model.Message</p>
+            }
+            else
+            {
+                <p class="h6 text-danger">@Model.Message</p>
+            }
+
+        </div>
+
+        <div class="m-3">
+        @*When the GET request is executed we don't need this part*@
+        @if (@Model.Message != null)
+        {
+            int remainingCards = Model.OverShootCards + Model.SafeCards;
+
+            <ul class="list-group">
+                <li class="list-group-item">Overshoot cards: @Model.OverShootCards</li>
+                <li class="list-group-item">Safe cards: @Model.SafeCards</li>
+                <li class="list-group-item">Remaining Cards: @remainingCards</li>
+            </ul>
+        }
+        </div>
+
+    </form>
+
+</div>

@@ -1,0 +1,65 @@
+﻿@model HelperUpdatesViewModel
+
+@{
+    ViewBag.Title = "Helper";
+    string[] seeds = { "H", "D", "C", "S" };
+}
+
+<div class="container">
+    <h1 class="h5 text-center m-3">Cheat room: @Model.RoomId</h1>
+    <form method="post" asp-controller="Home" asp-action="Helper">
+        <input type="hidden" asp-for="@Model.RoomId" />
+        <div class="table-responsive-md">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ace</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>J</th>
+                        <th>Q</th>
+                        <th>K</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var seed in seeds)
+                    {
+                        <tr>
+                            @{
+                                string buttonColor = "btn btn-danger";
+                                if (seed == "C" || seed == "S")
+                                {
+                                    buttonColor = "btn btn-dark";
+                                }
+                                string cName;
+                                cName = seed + "A";
+                                <td><button type="submit" class="@buttonColor" asp-route-cardName="@cName">@cName</button></td>
+
+                                for (var i = 2; i <= 10; i++)
+                                {
+                                    cName = seed + i;
+                                    <td><button type="submit" class="@buttonColor" asp-route-cardName="@cName">@cName</button></td>
+                                }
+
+                                cName = seed + "J";
+                                <td><button type="submit" class="@buttonColor" asp-route-cardName="@cName">@cName</button></td>
+                                cName = seed + "Q";
+                                <td><button type="submit" class="@buttonColor" asp-route-cardName="@cName">@cName</button></td>
+                                cName = seed + "K";
+                                <td><button type="submit" class="@buttonColor" asp-route-cardName="@cName">@cName</button></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+</div>

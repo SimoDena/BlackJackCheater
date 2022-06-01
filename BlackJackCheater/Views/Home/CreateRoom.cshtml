@@ -1,0 +1,26 @@
+﻿@model CreateRoomViewModel
+
+@{
+    ViewBag.Title = "Create Room";
+}
+
+<div class="container">
+    <form method="post">
+        <div class="mb-3">
+            <label asp-for="RoomName">Room Name</label>
+            <input asp-for="RoomName" class="form-control"/>
+            <span asp-validation-for="RoomName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Decks">Number of Decks</label>
+            <input asp-for="Decks" class="form-control"/>
+            <span asp-validation-for="Decks" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn-secondary btn-block">Create</button>
+        </div>
+        <br />
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </form>
+</div>
