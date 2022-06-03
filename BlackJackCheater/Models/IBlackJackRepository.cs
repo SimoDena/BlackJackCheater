@@ -11,5 +11,6 @@ namespace BlackJackCheater.Models
         void UpdateCard(Card card);
         IEnumerable<Card> GetCards();
         void InsertCardsForMatch(string idMatch, int numberOfDecks);
+        void CountCards(int hand, out int nOvershoot, out int nSafe);
     }
 }

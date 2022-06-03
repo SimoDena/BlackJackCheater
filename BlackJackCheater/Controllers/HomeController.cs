@@ -137,8 +137,10 @@ namespace BlackJackCheater.Controllers
             string message = "";
             int nOverShoot = 0;
             int nSafe = 0;
+
             if (sum > 11)
             {
+                blackJackRepository.CountCards(sum, out nOverShoot, out nSafe);
                 if (nOverShoot > nSafe)
                 {
                     message = "Stand";

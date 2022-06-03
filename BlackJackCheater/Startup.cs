@@ -21,7 +21,9 @@ namespace BlackJackCheater
         }
 
         public IConfiguration Configuration { get; }
-        readonly MySqlServerVersion version = new MySqlServerVersion(new Version(5, 7, 22));
+
+        //readonly MySqlServerVersion version = new MySqlServerVersion(new Version(5, 7, 22));
+        readonly MySqlServerVersion version = new MySqlServerVersion(new Version(8, 0, 27));
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)

@@ -68,18 +68,17 @@
         <div class="mb-3">
             @if (@Model.Message == "Hit")
             {
-                <p class="h6 text-primary">@Model.Message</p>
+                <p class="h6 text-success">@Model.Message</p>
             }
             else
             {
                 <p class="h6 text-danger">@Model.Message</p>
             }
-
         </div>
 
         <div class="m-3">
         @*When the GET request is executed we don't need this part*@
-        @if (@Model.Message != null)
+        @if (Model.Message != null && Model.Hand > 11)
         {
             int remainingCards = Model.OverShootCards + Model.SafeCards;
 
@@ -91,6 +90,9 @@
         }
         </div>
 
-    </form>
+        <div>
+            <a asp-controller="Home" asp-action="Cheater" asp-route-idMatch="@Model.RoomId" class="btn btn-primary">New Hand</a>
+        </div>
 
+    </form>
 </div>

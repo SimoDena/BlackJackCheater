@@ -13,6 +13,23 @@ namespace BlackJackCheater.Models
             context = _context;
         }
 
+        public void CountCards(int hand, out int nOvershoot, out int nSafe)
+        {
+            nOvershoot = 0;
+            nSafe = 0;
+            foreach (Card card in context.Cards)
+            {
+                if ((card.Value + hand) > 21)
+                {
+                    nOvershoot = nOvershoot + card.Occurences;
+                }
+                else
+                {
+                    nSafe = nSafe + card.Occurences;
+                }
+            }
+        }
+
         public void CreateMatch(Match match)
         {
             context.Matches.Add(match);
